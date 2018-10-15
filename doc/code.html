@@ -215,12 +215,23 @@ $ <b>mkdir -p $GOPATH/src/github.com/user</b>
 
 <p>
 To compile and run a simple program, first choose a package path (we'll use
-<code>github.com/user/hello</code>) and create a corresponding package directory
-inside your workspace:
+<code>github.com/user/hello</code>) and create a new directory on your machine in which your Go program will live. 
 </p>
 
 <pre>
-$ <b>mkdir $GOPATH/src/github.com/user/hello</b>
+$ <b>mkdir /Users/your/projects/github.com/user/hello</b>
+$ <b>cd /Users/your/projects/github.com/user/hello</b>
+$ <b>go mod init github.com/user/hello</b>
+</pre>
+
+<p>
+This will generate a <code>go.mod</code> file within your project's root directory.
+The <code>go.mod</code> file will contain the name of our newly created module, in this case,
+<code>github.com/user/hello</code>.
+</p>
+
+<pre>
+module github.com/user/hello
 </pre>
 
 <p>
@@ -239,28 +250,29 @@ func main() {
 </pre>
 
 <p>
-Now you can build and install that program with the <code>go</code> tool:
+Now you can build that program with the <code>go</code> tool:
+</p>
+
+<pre>
+$ <b>go build hello.go</b>
+</pre>
+
+<p>This will compile your Go code into a <code>./hello</code> binary that can be executed.</p>
+
+<pre>
+$ <b>./hello</b>
+<b>Hello, world.</b>
+</pre>
+
+<p>
+Note that you can also use the <code>install</code> command to add your compiled binary
+executable to <code>$HOME/go/bin/hello</code>. 
 </p>
 
 <pre>
 $ <b>go install github.com/user/hello</b>
-</pre>
-
-<p>
-Note that you can run this command from anywhere on your system. The
-<code>go</code> tool finds the source code by looking for the
-<code>github.com/user/hello</code> package inside the workspace specified by
-<code>GOPATH</code>.
-</p>
-
-<p>
-You can also omit the package path if you run <code>go install</code> from the
-package directory:
-</p>
-
-<pre>
-$ <b>cd $GOPATH/src/github.com/user/hello</b>
-$ <b>go install</b>
+$ <b>$HOME/go/bin/hello</b>
+hello, world.
 </pre>
 
 <p>
@@ -459,7 +471,6 @@ only that the import paths (their full file names) be unique.
 See <a href="/doc/effective_go.html#names">Effective Go</a> to learn more about
 Go's naming conventions.
 </p>
-
 
 <h2 id="Testing">Testing</h2>
 
