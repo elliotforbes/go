@@ -207,7 +207,7 @@ directory on your machine in a location you find most convenient:
 </p>
 
 <pre>
-$ <b>mkdir /Users/your/projects/github.com/user</b>
+$ <b>mkdir ~/myproject/hello</b>
 </pre>
 
 <h3 id="Command">Your first program</h3>
@@ -215,11 +215,14 @@ $ <b>mkdir /Users/your/projects/github.com/user</b>
 <p>
 To compile and run a simple program, first choose a package path (we'll use
 <code>github.com/user/hello</code>) and create a new directory on your machine in which your Go program will live. 
+<b>Note:</b> you should ensure this directory lies outwith your <code>$GOPATH</code> unless you have explicitly set
+<code>GO111MODULE</code> to <code>on</code>. You can find more about this here: <a href="https://github.com/golang/go/wiki/Modules#how-to-use-modules">How to Use Modules</a>
 </p>
 
+
 <pre>
-$ <b>mkdir /Users/your/projects/github.com/user/hello</b>
-$ <b>cd /Users/your/projects/github.com/user/hello</b>
+$ <b>mkdir ~/myproject/hello</b>
+$ <b>cd ~/myproject/hello</b>
 $ <b>go mod init github.com/user/hello</b>
 </pre>
 
@@ -313,7 +316,7 @@ optional: you do not need to use source control to write Go code.
 </p>
 
 <pre>
-$ <b>cd $GOPATH/src/github.com/user/hello</b>
+$ <b>cd ~/myproject/hello</b>
 $ <b>git init</b>
 Initialized empty Git repository in /home/user/work/src/github.com/user/hello/.git/
 $ <b>git add hello.go</b>
