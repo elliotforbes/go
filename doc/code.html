@@ -313,9 +313,9 @@ optional: you do not need to use source control to write Go code.
 </p>
 
 <pre>
-$ <b>cd ~/myProject/hello</b>
+$ <b>cd ~/myproject/hello</b>
 $ <b>git init</b>
-Initialized empty Git repository in ~/myProject/hello/.git/
+Initialized empty Git repository in ~/myproject/hello/.git/
 $ <b>git add hello.go</b>
 $ <b>git commit -m "initial commit"</b>
 [master (root-commit) 0b4507d] initial commit
@@ -340,7 +340,9 @@ Again, the first step is to choose a package path (we'll use
 </p>
 
 <pre>
-$ <b>mkdir $GOPATH/src/github.com/user/stringutil</b>
+$ <b>mkdir ~/myproject/stringutil</b>
+$ <b>cd ~/myproject/stringutil</b>
+$ <b>go mod init github.com/user/stringutil</b>
 </pre>
 
 <p>
@@ -384,9 +386,27 @@ Instead it saves the compiled package in the local build cache.
 </p>
 
 <p>
-After confirming that the <code>stringutil</code> package builds,
+After confirming that the <code>stringutil</code> package builds, 
+you will need to commit this up to your VCS repo.
+</p>
+
+<pre>
+$ <b>cd ~/myproject/stringutil</b>
+$ <b>git init</b>
+Initialized empty Git repository in ~/myproject/hello/.git/
+$ <b>git remote add origin https://github.com/user/stringutil.git</b>
+$ <b>git add reverse.go</b>
+$ <b>git commit -m "initial commit"</b>
+[master (root-commit) 0b4507d] initial commit
+	1 file changed, 1 insertion(+)
+	create mode 100644 hello.go
+$ <b>git push origin master</b>
+</pre>
+
+<p>
+Once you have committed this package up to git, you can then
 modify your original <code>hello.go</code> (which is in
-<code>$GOPATH/src/github.com/user/hello</code>) to use it:
+<code>~/myProject/hello</code>) to use it:
 </p>
 
 <pre>
@@ -420,20 +440,6 @@ $ <b>hello</b>
 Hello, Go!
 </pre>
 
-<p>
-After the steps above, your workspace should look like this:
-</p>
-
-<pre>
-bin/
-    hello                 # command executable
-src/
-    github.com/user/
-        hello/
-            hello.go      # command source
-        stringutil/
-            reverse.go    # package source
-</pre>
 
 <h3 id="PackageNames">Package names</h3>
 
