@@ -330,12 +330,15 @@ Pushing the code to a remote repository is left as an exercise for the reader.
 <h3 id="Library">Your first library</h3>
 
 <p>
-Let's write a library and use it from the <code>hello</code> program.
+Let's write a library that is totally independent from
+your original Go program and use it from the <code>hello</code> program.
 </p>
 
 <p>
 Again, the first step is to choose a package path (we'll use
-<code>github.com/user/stringutil</code>) and create the package directory:
+<code>github.com/user/stringutil</code>) and create the package directory.
+You'll also need to create a VCS repo in git that follows the same naming
+convention.
 </p>
 
 <pre>
