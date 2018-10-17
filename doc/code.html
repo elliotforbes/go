@@ -419,12 +419,13 @@ After the steps above, your workspace should look like this:
 <pre>
 $GOPATH/bin/
 		hello                 # command executable
-		
-~/myproject/
-		hello/
-				hello.go      # command source
+
+~/myproject/hello/
 		stringutil/
-				reverse.go    # package source
+			reverse.go    # package source
+		hello.go      # command source
+		go.mod
+		go.sum
 </pre>
 
 <h3 id="PackageNames">Package names</h3>
@@ -461,44 +462,6 @@ only that the import paths (their full file names) be unique.
 <p>
 See <a href="/doc/effective_go.html#names">Effective Go</a> to learn more about
 Go's naming conventions.
-</p>
-
-<h2 id="Modules">Modules</h2>
-
-<p>
-Go recently introduced support for modules in the v1.12 release. A <i>Module</i> is 
-a collection of related Go packages that are versioned together as a single unit. 
-</p>
-
-<p>
-You'll tend to find one module map to one version-control repository, however, there are 
-exceptions to this rule. 
-</p>
-
-<p>
-With the introduction of modules came the introduction of the <code>go.mod</code> file which 
-encapsulates a module's definition as well as it's dependencies like so:
-</p>
-
-<pre>
-module github.com/my/thing
-
-require (
-		github.com/some/dependency v1.2.3
-		github.com/another/dependency/v4 v4.0.0
-)
-</pre>
-
-<p>
-We have already seen how to initialize a project with the <code>go mod init github.com/user/hello</code> 
-command at the root of our project. And when we include new dependencies at the 
-top of any of our Go packages, the <code>go build</code> command will automatically
-fetch in any of the dependencies needed for our program before compiling.
-</p>
-
-<p>
-For more help, run <code>go mod help</code> to see a full list of commands and see the
-<a href="https://github.com/golang/go/wiki/Modules">Go Modules</a> Wiki page for more detail.
 </p>
 
 <h2 id="Testing">Testing</h2>
@@ -602,22 +565,24 @@ tree should now look like this:
 </p>
 
 <pre>
-bin/
-    hello                           # command executable
-src/
-    github.com/golang/example/
-	.git/                       # Git repository metadata
-        hello/
-            hello.go                # command source
-        stringutil/
-            reverse.go              # package source
-            reverse_test.go         # test source
-    github.com/user/
-        hello/
-            hello.go                # command source
-        stringutil/
-            reverse.go              # package source
-            reverse_test.go         # test source
+~/myProject/hello/	
+		stringutil/	
+				reverse.go              # package source
+				reverse_test.go         # test source
+		hello.go                # command source
+		go.mod
+		go.sum
+	
+$GOPATH/
+	bin/
+			hello                           # command executable
+	src/github.com/golang/
+			example/
+					stringutil/
+							reverse.go              # package source
+							reverse_test.go         # test source
+					hello/
+							...
 </pre>
 
 <p>
@@ -643,6 +608,45 @@ provide lists of external Go projects.
 <p>
 For more information on using remote repositories with the <code>go</code> tool, see
 <code><a href="/cmd/go/#hdr-Remote_import_paths">go help importpath</a></code>.
+</p>
+
+
+<h2 id="Modules">Modules</h2>
+
+<p>
+Go recently introduced support for modules in the v1.12 release. A <i>Module</i> is 
+a collection of related Go packages that are versioned together as a single unit. 
+</p>
+
+<p>
+You'll tend to find one module map to one version-control repository, however, there are 
+exceptions to this rule. 
+</p>
+
+<p>
+With the introduction of modules came the introduction of the <code>go.mod</code> file which 
+encapsulates a module's definition as well as it's dependencies like so:
+</p>
+
+<pre>
+module github.com/my/thing
+
+require (
+		github.com/some/dependency v1.2.3
+		github.com/another/dependency/v4 v4.0.0
+)
+</pre>
+
+<p>
+We have already seen how to initialize a project with the <code>go mod init github.com/user/hello</code> 
+command at the root of our project. And when we include new dependencies at the 
+top of any of our Go packages, the <code>go build</code> command will automatically
+fetch in any of the dependencies needed for our program before compiling.
+</p>
+
+<p>
+For more help, run <code>go mod help</code> to see a full list of commands and see the
+<a href="https://github.com/golang/go/wiki/Modules">Go Modules</a> Wiki page for more detail.
 </p>
 
 
