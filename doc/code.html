@@ -614,17 +614,17 @@ For more information on using remote repositories with the <code>go</code> tool,
 <h2 id="Modules">Modules</h2>
 
 <p>
-Go recently introduced support for modules in the v1.12 release. A <i>Module</i> is 
-a collection of related Go packages that are versioned together as a single unit. 
+Go recently introduced support for modules in the v1.12 release. A <i>Module</i> is
+a collection of related Go packages that are versioned together as a single unit.
 </p>
 
 <p>
-You'll tend to find one module map to one version-control repository, however, there are 
-exceptions to this rule. 
+You'll tend to find one module map to one version-control repository, however, there are
+exceptions to this rule.
 </p>
 
 <p>
-With the introduction of modules came the introduction of the <code>go.mod</code> file which 
+With the introduction of modules came the introduction of the <code>go.mod</code> file which
 encapsulates a module's definition as well as it's dependencies like so:
 </p>
 
@@ -638,8 +638,8 @@ require (
 </pre>
 
 <p>
-We have already seen how to initialize a project with the <code>go mod init github.com/user/hello</code> 
-command at the root of our project. And when we include new dependencies at the 
+We have already seen how to initialize a project with the <code>go mod init github.com/user/hello</code>
+command at the root of our project. And when we include new dependencies at the
 top of any of our Go packages, the <code>go build</code> command will automatically
 fetch in any of the dependencies needed for our program before compiling.
 </p>
